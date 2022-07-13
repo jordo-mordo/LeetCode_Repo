@@ -10,7 +10,7 @@ var numUniqueEmails = function(emails) {
         let atSymbol = string.indexOf('@');
         let domain = string.slice(atSymbol + 1, string.length);
         let username = string.slice(0, atSymbol);
-        username = username.replaceAll('.', '');
+        username = username.replace(/[.]/g, '');
         if (username.includes('+')) {
             username = username.slice(0, username.indexOf('+'));
         }
