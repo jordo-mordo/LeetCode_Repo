@@ -11,14 +11,15 @@
  * @return {ListNode}
  */
 var detectCycle = function(head) {
-    const hashSet = new Set();
+    const nodeSet = new Set();
     
     while(head) {
-        hashSet.add(head);
-        if (hashSet.has(head.next)) {
-            return head.next
+        nodeSet.add(head);
+        if (nodeSet.has(head.next)) {
+            return head.next;
         }
         head = head.next;
     }
+    
     return null;
 };
