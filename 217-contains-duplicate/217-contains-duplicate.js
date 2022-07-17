@@ -15,5 +15,5 @@ var containsDuplicate = function(nums) {
     // });
     // return result;
     
-    return new Set(nums).size < nums.length;
+    return new Set(nums).size !== nums.length;
 };
