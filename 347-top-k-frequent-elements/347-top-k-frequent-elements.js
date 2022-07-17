@@ -5,28 +5,25 @@
  */
 var topKFrequent = function(nums, k) {
     let map = {};
-    let res = [];
+let res = [];
+
+let bucket = nums.map(() => {
+  return [];
+});
+bucket.push([]);
+
+for (let num of nums) {
+  map[num] = map[num] + 1 || 1;
+}
+
+for (const [key, value] of Object.entries(map)) {
+  bucket[value].push(Number(key));
+}
+
+bucket = bucket.filter(values => values.length > 0);
+bucket = bucket.reverse();
+bucket.forEach(vals => res.push(...vals));
+res = res.slice(0, k)
     
-    let bucket = nums.map(() => {
-	    return [];
-    });
-    bucket.push([]);
-    
-    for (let num of nums) {
-        map[num] = map[num] + 1 || 1;
-    }
-    
-    for (const [key, value] of Object.entries(map)) {
-        bucket[value].push(key);
-    }
-    
-    for (let i = bucket.length - 1; i >= 0; i--) {
-        if (bucket[i].length > 0) {
-            for (let n of bucket[i]) {
-                res.push(n);
-                if (res.length === k)
-                    return res;
-            }
-        }
-    }
+    return res;
 };
